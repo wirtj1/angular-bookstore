@@ -1,14 +1,16 @@
 <div *ngIf="!selectedBook" class="col-md-8 col-md-offset-2">
   <h2>booktable</h2>
 
-  <div class="input-group">
-  <span class="input-group-btn">
-          <button class="btn btn-default" type="button" (click)="searchBooks()">
+  <form (ngSubmit)="searchBooks()" novalidate>
+    <div class="input-group">
+      <div class="input-group-btn">
+        <button class="btn btn-default" type="submit">
             <i class="fa fa-search"></i>
           </button>
-  </span>
-    <input type="text" class="form-control" name="keywords" placeholder="Search..." [(ngModel)]="keywords">
-  </div>
+      </div>
+      <input type="text" class="form-control" name="keywords" placeholder="Search..." [(ngModel)]="keywords">
+    </div>
+  </form>
 
   <table class="table table-striped table-hover">
     <thead>
