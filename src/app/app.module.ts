@@ -1,6 +1,6 @@
+import {FormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { CatalogComponent } from './catalog/catalog.component';
 
@@ -10,7 +10,8 @@ import { CatalogComponent } from './catalog/catalog.component';
     CatalogComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

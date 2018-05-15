@@ -1,2 +1,18 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
+
+.table-book-detail td{
+
+  min-width: 200px;
+
+}
+.table-book-detail td:first-child{
+  font-weight: bold;
+}
+
+img{
+  max-width: 300px;
+}
+.title{
+  padding: 10px 0 50px 0;
+}

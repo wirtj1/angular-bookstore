@@ -8,6 +8,15 @@ import {Book} from '../domain/book';
 })
 export class CatalogComponent implements OnInit {
   public books: Book[] = BOOK_DATA;
+  public selectedBook : Book;
+  public keywords: string;
+
+  selectBook(book){
+    this.selectedBook = book;
+  }
+
+  searchBooks(){
+  }
 
   constructor() {
   }
