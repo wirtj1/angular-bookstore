@@ -5,14 +5,18 @@
     <div class="input-group">
       <div class="input-group-btn">
         <button class="btn btn-default" type="submit">
-            <i class="fa fa-search"></i>
-          </button>
+          <i class="fa fa-search"></i>
+        </button>
       </div>
       <input type="text" class="form-control" name="keywords" placeholder="Search..." [(ngModel)]="keywords">
     </div>
   </form>
 
-  <table class="table table-striped table-hover">
+  <div *ngIf="error" class="alert alert-danger">
+    <strong>{{error}}!</strong>
+  </div>
+
+  <table *ngIf="!error" class="table table-striped table-hover">
     <thead>
     <tr>
       <th>ISBN</th>
@@ -31,7 +35,7 @@
 </div>
 
 
-<div *ngIf="selectedBook" class="col-md-8 col-md-offset-2">
+<div *ngIf="selectedBook && !error" class="col-md-8 col-md-offset-2">
   <a (click)="selectedBook=null">back to the booktable </a>
   <h2>bookdetail</h2>
   <div class="row">

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {logging} from 'selenium-webdriver';
 import {Book} from '../domain/book';
 import {BOOK_DATA} from '../domain/book-data';
+import {CatalogService} from '../catalog.service';
 
 @Component({
   selector: 'app-catalog',
@@ -11,29 +12,30 @@ export class CatalogComponent implements OnInit {
   public books: Book[] = BOOK_DATA;
   public selectedBook: Book;
   public keywords: string;
+  public error: string;
 
-  selectBook(book) {
-    this.selectedBook = book;
-  }
-
-  searchBooks() {
-    const searchText = this.keywords.toLocaleLowerCase();
-
-    this.books = BOOK_DATA.filter(book => {
-      for (const prop in book) {
-        if (book[prop] && String(book[prop]).toLocaleLowerCase().includes(searchText)) {
-          return true;
-        }
-      }
-
-      return false;
-    });
-  }
-
-  constructor() {
+  constructor(private catalogService: CatalogService) {
   }
 
   ngOnInit() {
   }
+
+  searchBooks(): void {
+    this.error = null;
+    let books;
+    // Hier koennte auch die Musterloesung aufgerufen werden
+    // books = this.catalogService.searchBooksMuesterLoesung(this.keywords);
+    books = this.catalogService.searchBooks(this.keywords);
+    if (books.length > 0) {
+      this.books = books;
+    } else {
+      this.error = 'no matching books';
+    }
+  }
+
+  selectBook(book): void {
+    this.selectedBook = book;
+  }
+
 
 }
