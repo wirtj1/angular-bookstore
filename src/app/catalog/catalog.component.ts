@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {logging} from 'selenium-webdriver';
+import {CatalogService} from '../catalog.service';
 import {Book} from '../domain/book';
 import {BOOK_DATA} from '../domain/book-data';
-import {CatalogService} from '../catalog.service';
 
 @Component({
   selector: 'app-catalog',
@@ -13,6 +12,7 @@ export class CatalogComponent implements OnInit {
   public selectedBook: Book;
   public keywords: string;
   public error: string;
+  public loading = false;
 
   constructor(private catalogService: CatalogService) {
   }
@@ -21,21 +21,23 @@ export class CatalogComponent implements OnInit {
   }
 
   searchBooks(): void {
-    this.error = null;
-    let books;
     // Hier koennte auch die Musterloesung aufgerufen werden
-    // books = this.catalogService.searchBooksMuesterLoesung(this.keywords);
-    books = this.catalogService.searchBooks(this.keywords);
-    if (books.length > 0) {
-      this.books = books;
-    } else {
-      this.error = 'no matching books';
-    }
+    // this.catalogService.searchBooksMuesterLoesung(this.keywords)
+    this.catalogService.searchBooks(this.keywords)
+      .then((result: Book[]) => {
+        this.error = null;
+        this.loading = false;
+        this.books = result;
+      })
+      .catch((error: string) => {
+        this.loading = false;
+        this.error = error;
+      });
+    this.loading = true;
   }
 
   selectBook(book): void {
     this.selectedBook = book;
   }
-
 
 }

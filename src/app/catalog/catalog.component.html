@@ -1,5 +1,8 @@
 <div *ngIf="!selectedBook" class="col-md-8 col-md-offset-2">
   <h2>booktable</h2>
+  <div class="row spinner-row">
+    <div class="col-md-2 col-md-offset-5 spinner-col" *ngIf="loading"></div>
+  </div>
 
   <form (ngSubmit)="searchBooks()" novalidate>
     <div class="input-group">

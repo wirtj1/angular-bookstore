@@ -16,3 +16,13 @@ img{
 .title{
   padding: 10px 0 50px 0;
 }
+.spinner-row{
+  height: 35px;
+}
+.spinner-col{
+  min-height: 28px;
+  background-image: url("app/catalog/spinner.gif");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position:center;
+}

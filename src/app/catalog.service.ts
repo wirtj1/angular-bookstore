@@ -15,41 +15,59 @@ export class CatalogService {
   /**
    * diese funktion sucht die Attributte isbn, title und authors nach den keyword durch
    */
-  public searchBooks(keywords: string): Book[] {
-    const searchText = keywords.toLocaleLowerCase();
+  public searchBooks(keywords: string): Promise<any> {
 
-    const books = BOOK_DATA.filter(book => {
+    return new Promise<any>((resolve, reject) => {
+      setTimeout(() => {
+        const searchText = keywords.toLocaleLowerCase();
 
-      // Dies ist eine andere filter Loesung mit der ueber alle Properties eines books iteriert wird (nicht nur isbn, title und authors)
-      // Hinweis: im (aelteren) IE funktioniert .includes() moeglicherweise nicht und es muss mit .indexOf() gearbeitet werden.
+        const books = BOOK_DATA.filter(book => {
 
-      // for (const prop in book) {
-      //   if (book[prop] && String(book[prop]).toLocaleLowerCase().includes(searchText)) {
-      //     return true;
-      //   }
-      // }
+          // Dies ist eine andere filter Loesung mit der ueber alle Properties eines books iteriert wird (nicht nur isbn, title und authors)
+          // Hinweis: im (aelteren) IE funktioniert .includes() moeglicherweise nicht und es muss mit .indexOf() gearbeitet werden.
 
-      if (book['isbn'] && String(book['isbn']).toLocaleLowerCase().includes(searchText)) {
-        return true;
-      }
-      if (book['authors'] && String(book['authors']).toLocaleLowerCase().includes(searchText)) {
-        return true;
-      }
-      if (book['title'] && String(book['title']).toLocaleLowerCase().includes(searchText)) {
-        return true;
-      }
-      return false;
+          // for (const prop in book) {
+          //   if (book[prop] && String(book[prop]).toLocaleLowerCase().includes(searchText)) {
+          //     return true;
+          //   }
+          // }
+
+          if (book['isbn'] && String(book['isbn']).toLocaleLowerCase().includes(searchText)) {
+            return true;
+          }
+          if (book['authors'] && String(book['authors']).toLocaleLowerCase().includes(searchText)) {
+            return true;
+          }
+          if (book['title'] && String(book['title']).toLocaleLowerCase().includes(searchText)) {
+            return true;
+          }
+          return false;
+
+        });
+        if (books.length > 0) {
+          resolve(books);
+        } else {
+          reject('no matching books!');
+        }
+      }, 1500);
     });
-    return books;
-  }
 
+  }
 
   /**
    *  Dies war die Musterloesung
    */
-  public searchBooksMuesterLoesung(keywords: string): Book[] {
-    return BOOK_DATA.filter(book => this.isMatching(book, keywords));
-
+  public searchBooksMuesterLoesung(keywords: string): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      setTimeout(() => {
+        const books = BOOK_DATA.filter(book => this.isMatching(book, keywords));
+        if (books.length > 0) {
+          resolve(books);
+        } else {
+          reject('no matching books!');
+        }
+      }, 1500);
+    });
   }
 
   private isMatching(book: Book, keywords: string): boolean {
