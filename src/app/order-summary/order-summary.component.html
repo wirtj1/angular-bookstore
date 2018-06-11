@@ -1,0 +1,47 @@
+<div class="col-md-8 col-md-offset-2">
+  <h2>Order Summary</h2>
+  <div class="row">
+      <div class="col-md-12">
+        <div *ngIf="error" class="alert alert-danger">
+          <p>an error occured<br/></p>
+          <strong>{{error}}!</strong>
+        </div>
+        <div *ngIf="!error && orderNumber" class="alert alert-success">
+          <p>your order was successful<br/></p>
+          <strong>Your order number is: {{orderNumber}}</strong>
+        </div>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <h4>Customer</h4>
+      <div *ngIf="customer" class="customer-card">
+        <label>{{customer.firstName}} {{customer.lastName}}</label>
+        <br/>
+        <label>{{customer.email}}</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <h4>Ordered Books</h4>
+      <table *ngIf="book" class="table table-bordered">
+        <tr>
+          <th>ISBN</th>
+          <th>Authors</th>
+          <th>Title</th>
+        </tr>
+        <tr>
+          <td>{{book.isbn}}</td>
+          <td>{{book.authors}}</td>
+          <td>{{book.title}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button (click)="orderBook()" class="btn btn-primary">order book</button>
+    </div>
+  </div>
+</div>

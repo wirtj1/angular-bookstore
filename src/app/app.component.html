@@ -1,10 +1,25 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="row">
   <div class="col-md-1 col-md-offset-5 text-center title">
     <h1>BOOKSTORE</h1>
   </div>
-</div>
 
-<div class="row">
-  <app-catalog></app-catalog>
-</div>
+  <div class="col-md-8 col-md-offset-2">
+    <nav class="navbar navbar-default">
+
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            <a routerLink="/home" routerLinkActive="active-link">Home</a>
+          </li>
+          <li>
+            <a routerLink="/catalog" routerLinkActive="active-link">Catalog</a>
+          </li>
+          <li>
+            <a routerLink="/customer-details" routerLinkActive="active-link">Customer</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+<router-outlet></router-outlet>

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CatalogService} from '../catalog.service';
 import {Book} from '../domain/book';
 import {BOOK_DATA} from '../domain/book-data';
+import {HttpParams} from '@angular/common/http';
 
 @Component({
   selector: 'app-catalog',
@@ -21,9 +22,10 @@ export class CatalogComponent implements OnInit {
   }
 
   searchBooks(): void {
-    // Hier koennte auch die Musterloesung aufgerufen werden
+    // Hier koennte auch die Musterloesung ohne http oder die lokale search methode aufgerufen werden
     // this.catalogService.searchBooksMuesterLoesung(this.keywords)
-    this.catalogService.searchBooks(this.keywords)
+    // this.catalogService.searchBooks(this.keywords)
+    this.catalogService.searchBooksViaHttp(this.keywords)
       .then((result: Book[]) => {
         this.error = null;
         this.loading = false;

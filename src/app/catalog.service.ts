@@ -1,15 +1,12 @@
+import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Book} from './domain/book';
 import {BOOK_DATA} from './domain/book-data';
 
-@Injectable({
-  providedIn: 'root'
-})
-
 @Injectable()
 export class CatalogService {
 
-  constructor() {
+  constructor(private httpClient: HttpClient) {
   }
 
   /**
@@ -77,6 +74,18 @@ export class CatalogService {
       keyword => matches = matches && data.includes(keyword)
     );
     return matches;
+  }
+
+  public searchBooksViaHttp(keywords: string): Promise<Book[]> {
+    const url = 'http://distsys.ch:1450/api/books?keywords=' + keywords;
+    // const secondurl ="http://distsys.ch:1450/api/orders/--number--";
+    const options = {params: new HttpParams().set('keywords', keywords)};
+    return this.httpClient.get<Book[]>(url, options).toPromise()
+    // return this.httpClient.get<Book[]>(url).toPromise()
+      .catch((response: HttpErrorResponse) => {
+        // throw new Error('Unexpected error (HTTP status ' + response.status + ')');
+        throw new Error(response.error + ' (' + response.statusText + ')');
+      });
   }
 
 }

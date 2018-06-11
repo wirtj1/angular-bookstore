@@ -1,0 +1,55 @@
+<div class="col-md-8 col-md-offset-2">
+  <div class="row">
+    <div class="col-md-9 col-sm-12 back">
+      <a (click)="goBack()"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;back to the booktable </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-9 col-sm-12">
+      <table class="table table-bordered table-book-detail">
+        <tr>
+          <td>ISBN</td>
+          <td>{{book.isbn}}</td>
+        </tr>
+        <tr>
+          <td>authors</td>
+          <td>{{book.authors}}</td>
+        </tr>
+        <tr>
+          <td>title</td>
+          <td>{{book.title}}</td>
+        </tr>
+        <tr>
+          <td>price</td>
+          <td>{{book.price}}</td>
+        </tr>
+        <tr>
+          <td>publisher</td>
+          <td>{{book.publisher}}</td>
+        </tr>
+        <tr>
+          <td>publication year</td>
+          <td>{{book.publicationYear}}</td>
+        </tr>
+        <tr>
+          <td>binding</td>
+          <td>{{book.binding}}</td>
+        </tr>
+        <tr>
+          <td>number of pages</td>
+          <td>{{book.numberOfPages}}</td>
+        </tr>
+        <tr>
+          <td>description</td>
+          <td>{{book.description}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-3 col-sm-12">
+      <img [src]="book.imageUrl">
+    </div>
+    <div class="col-md-12">
+      <button (click)="saveBook()" class="btn btn-primary">add Book to cart</button>
+    </div>
+  </div>
+</div>

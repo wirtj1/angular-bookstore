@@ -1,6 +1,6 @@
 <div *ngIf="!selectedBook" class="col-md-8 col-md-offset-2">
-  <h2>booktable</h2>
-  <div class="row spinner-row">
+  <h3>Books</h3>
+  <div class="spinner-row">
     <div class="col-md-2 col-md-offset-5 spinner-col" *ngIf="loading"></div>
   </div>
 
@@ -37,56 +37,4 @@
   </table>
 </div>
 
-
-<div *ngIf="selectedBook && !error" class="col-md-8 col-md-offset-2">
-  <a (click)="selectedBook=null">back to the booktable </a>
-  <h2>bookdetail</h2>
-  <div class="row">
-    <div class="col-md-8 col-sm-12">
-      <table class="table table-bordered table-book-detail">
-        <tr>
-          <td>ISBN</td>
-          <td>{{selectedBook.isbn}}</td>
-        </tr>
-        <tr>
-          <td>authors</td>
-          <td>{{selectedBook.authors}}</td>
-        </tr>
-        <tr>
-          <td>title</td>
-          <td>{{selectedBook.title}}</td>
-        </tr>
-        <tr>
-          <td>price</td>
-          <td>{{selectedBook.price}}</td>
-        </tr>
-        <tr>
-          <td>publisher</td>
-          <td>{{selectedBook.publisher}}</td>
-        </tr>
-        <tr>
-          <td>publication year</td>
-          <td>{{selectedBook.publicationYear}}</td>
-        </tr>
-        <tr>
-          <td>binding</td>
-          <td>{{selectedBook.binding}}</td>
-        </tr>
-        <tr>
-          <td>number of pages</td>
-          <td>{{selectedBook.numberOfPages}}</td>
-        </tr>
-        <tr>
-          <td>description</td>
-          <td>{{selectedBook.description}}</td>
-        </tr>
-      </table>
-    </div>
-    <div class="col-md-4 col-sm-12">
-      <img [src]="selectedBook.imageUrl">
-    </div>
-    <div class="col-md-12">
-      <button (click)="selectedBook=null" class="btn-sm m">Back</button>
-    </div>
-  </div>
-</div>
+<app-book-details *ngIf="selectedBook && !error" [book]="selectedBook" (back)="selectedBook = null"></app-book-details>
